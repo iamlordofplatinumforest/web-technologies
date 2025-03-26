@@ -37,7 +37,7 @@
         });
     </script>
 
-    <script src="../Public/js/script.js"></script>
+    
 </body>
 </html>
 

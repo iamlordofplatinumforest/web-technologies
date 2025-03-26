@@ -1,12 +1,17 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    $class = str_replace('\\', '/', $class);
-    require __DIR__ . '/../' . $class . '.php';
+    $file = dirname(__DIR__) . '/' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($file)) {
+        require $file;
+    }
 });
 
-use wt\Controllers\BookController;
+require dirname(__DIR__) . '/Router/router.php';
+
+use Controller\BookController;
 
 $controller = new BookController();
 $controller->showBooks();
+?>
 
