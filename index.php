@@ -7,11 +7,11 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require dirname(__DIR__) . '/Router/router.php';
+require_once __DIR__ . '/Router/Router.php';
 
-use Controller\BookController;
+use wt\Router\Router;
 
-$controller = new BookController();
-$controller->showBooks();
-?>
+$router = new Router();  
+$router->handleRequest();
+
 

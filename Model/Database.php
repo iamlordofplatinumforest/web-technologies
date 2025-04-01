@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace wt\Model;
 
 use PDO;
 use PDOException;
@@ -29,5 +29,4 @@ class Database {
         return $this->pdo;
     }
 }
-?>
 

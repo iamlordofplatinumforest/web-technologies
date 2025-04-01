@@ -1,22 +1,25 @@
-<?php 
+<?php
 
-namespace Controller;
+declare(strict_types=1);
 
-use Model\Book;
+namespace wt\Controller;
 
-class BookController {
-    public function showBooks() {
+use wt\Model\Book;
+
+class BookController 
+{
+    public function showBooks(): void 
+    {
         $books = Book::getAllBooks();
         
-        // Просто используем путь из базы данных без изменений
-        $books = array_map(function($book) {
-            $book->image = $book->image;  // Путь уже правильный в базе данных
-            return $book;
-        }, $books);
+        $books = array_map(
+            function(Book $book): Book {
+                $book->image = $book->image;  
+                return $book;
+            },
+            $books
+        );
         
         include __DIR__ . '/../View/BookList.php';
     }
 }
-?>
-
-?>
