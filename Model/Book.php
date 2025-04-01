@@ -4,24 +4,39 @@ declare(strict_types=1);
 
 namespace wt\Model;
 
-use PDO;
-
 class Book {
-    public string $title;
-    public string $author;
-    public string $image;
+    private string $title;
+    private string $author;
+    private string $image;
 
     public function __construct(string $title, string $author, string $image) {
+        $this->setTitle($title);
+        $this->setAuthor($author);
+        $this->setImage($image);
+    }
+
+    public function getTitle(): string {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void {
         $this->title = $title;
+    }
+
+    public function getAuthor(): string {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): void {
         $this->author = $author;
+    }
+
+    public function getImage(): string {
+        return $this->image;
+    }
+
+    public function setImage(string $image): void {
         $this->image = $image;
     }
-
-    public static function getAllBooks(): array {
-        $pdo = Database::getInstance()->getConnection();
-        $stmt = $pdo->query("SELECT title, author, image FROM books");
-        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return array_map(fn(array $b): Book => new Book($b['title'], $b['author'], $b['image']), $books);
-    }
 }
+

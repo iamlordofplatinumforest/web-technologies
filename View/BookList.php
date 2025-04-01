@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список книг</title>
-    <link rel="stylesheet" href="../Public/css/style.css">
+    <link rel="stylesheet" href="Public/css/style.css">
 </head>
 <body>
     <h1>Мой список книг</h1>
     <div id="books-list" class="books-container"></div>
     
     <script>
-        const books = <?php echo json_encode($books); ?>;
-        
+        const books = <?php echo json_encode($booksArray); ?>;
+
         const booksList = document.getElementById("books-list");
 
         books.forEach(book => {
@@ -36,8 +36,6 @@
             booksList.appendChild(bookCard);
         });
     </script>
-
-    
 </body>
 </html>
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace wt\Router;
 
 use wt\Controller\BookController;
@@ -16,20 +18,20 @@ class Router
     }
 
     public function handleRequest(): void
-{
-    $basePath = '/wt';
-    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $uri = str_replace([$basePath, '/index.php'], '', $uri);
-    if ($uri === '') {
-        $uri = '/';
+    {
+        $basePath = '/wt';
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = str_replace([$basePath, '/index.php'], '', $uri);
+        if ($uri === '') {
+            $uri = '/';
+        }
+        if (isset($this->routes[$uri])) {
+            [$controllerClass, $method] = $this->routes[$uri];
+            $controller = new $controllerClass();
+            $controller->$method();
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            echo "404 Page Not Found. URI: " . htmlspecialchars($uri);
+        }
     }
-    if (isset($this->routes[$uri])) {
-        [$controllerClass, $method] = $this->routes[$uri];
-        $controller = new $controllerClass();
-        $controller->$method();
-    } else {
-        header("HTTP/1.0 404 Not Found");
-        echo "404 Page Not Found. URI: " . htmlspecialchars($uri);
-    }
-}
 }

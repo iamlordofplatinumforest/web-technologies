@@ -1,6 +1,8 @@
 <?php
 
-spl_autoload_register(function ($class) {
+declare(strict_types=1);
+
+spl_autoload_register(function (string $class): void {
     $file = dirname(__DIR__) . '/' . str_replace('\\', '/', $class) . '.php';
     if (file_exists($file)) {
         require $file;
@@ -13,5 +15,3 @@ use wt\Router\Router;
 
 $router = new Router();  
 $router->handleRequest();
-
-
