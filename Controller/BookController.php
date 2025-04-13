@@ -1,32 +1,33 @@
 <?php
-
-declare(strict_types=1);
-
 namespace wt\Controller;
 
 use wt\Repository\BookRepository;
 use wt\Model\Book;
+use wt\TemplateEngine;
 
-class BookController 
+class BookController
 {
     private BookRepository $bookRepository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->bookRepository = new BookRepository();
     }
 
-    public function showBooks(): void 
-{
-    $books = $this->bookRepository->getAllBooks();
-    $booksArray = array_map(function(Book $book) {
-        return [
+    public function showBooks(): void
+    {
+        $books = $this->bookRepository->getAllBooks();
+        $booksArray = array_map(fn(Book $book) => [
             'title' => $book->getTitle(),
             'author' => $book->getAuthor(),
             'image' => $book->getImage()
-        ];
-    }, $books);
-    
-    include __DIR__ . '/../Public/html/BookList.html'; 
-}
+        ], $books);
+
+        $template = new TemplateEngine(__DIR__ . '/../View/templates');
+        echo $template->render('BookList.php', [
+            'title' => 'Список книг',
+            'books' => $booksArray
+        ]);
+    }
 }
 

@@ -33,9 +33,9 @@ h1 {
 }
 
 .book-card img {
-    width: 100%; /* Ширина изображения на всю карточку */
-    height: 250px; /* Фиксированная высота для всех изображений */
-    object-fit: cover; /* Обрезаем изображение, чтобы оно заполнило область */
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover; 
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -43,7 +43,7 @@ h1 {
 .book-card h2 {
     font-size: 1.2em;
     margin: 10px 0;
-    flex-grow: 1; /* Занимает оставшееся пространство */
+    flex-grow: 1; 
 }
 
 .book-card p {
