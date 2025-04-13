@@ -26,7 +26,7 @@ class BookController
         ];
     }, $books);
     
-    include __DIR__ . '/../View/BookList.php'; 
+    include __DIR__ . '/../Public/html/BookList.html'; 
 }
 }
 

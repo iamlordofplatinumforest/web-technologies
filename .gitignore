@@ -6,6 +6,7 @@
 /vendor/
 /node_modules/
 /.env
+.htpasswd
 /.env.local
 /.env.*.local
 /.cache/
